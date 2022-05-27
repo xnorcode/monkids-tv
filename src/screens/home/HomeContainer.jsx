@@ -47,6 +47,7 @@ export const HomeContainer = () => {
                 handleGetGifs={handleGetGifs}
                 selected={selected}
                 gifs={gifs}
+                loading={loading}
             />
 
             { loading && <FullScreenSpinner /> }
