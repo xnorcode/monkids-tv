@@ -58,6 +58,8 @@ export const GifGallery = ({ data }) => {
 
 
     useEffect(() => {
+        if(!data || data.length === 0) return;
+
         // start/reset timer
         if(!timer) setTimer(setInterval(() => setCounter(cnt => cnt - 1), 1000));
         else if(counter <= 0) nextGif();
@@ -70,6 +72,8 @@ export const GifGallery = ({ data }) => {
         return () => clearInterval(timer);
     }, [timer]);
 
+
+    if(!data || data.length === 0) return null;
 
     return (
         <Container maxwidth={`${galleryWidth}px`} maxheight={`${galleryHeight}px`}>
