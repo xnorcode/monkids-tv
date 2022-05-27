@@ -47,17 +47,19 @@ export const GifGallery = ({ data }) => {
 
 
     // reset timer and set next active gif for display
-    const nextGif = useCallback((timer) => {
+    const nextGif = useCallback(() => {
         // reset timer
         clearInterval(timer);
         setCounter(5);
         // set next gif active
         setActive(val => val < (data.length - 1) ? val + 1 : 0);
 
-    }, [data]);
+    }, [data, timer]);
 
 
     useEffect(() => {
+        if(!data || data.length === 0) return;
+
         // start/reset timer
         if(!timer) setTimer(setInterval(() => setCounter(cnt => cnt - 1), 1000));
         else if(counter <= 0) nextGif();
@@ -70,6 +72,8 @@ export const GifGallery = ({ data }) => {
         return () => clearInterval(timer);
     }, [timer]);
 
+
+    if(!data || data.length === 0) return null;
 
     return (
         <Container maxwidth={`${galleryWidth}px`} maxheight={`${galleryHeight}px`}>

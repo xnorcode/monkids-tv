@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { gifActions } from '../../actions';
@@ -28,7 +28,7 @@ export const HomeContainer = () => {
      * 
      * @param {String} animal The name of the animal
      */
-    function handleGetGifs(animal) {
+    const handleGetGifs = useCallback((animal) => {
         if(animal === selected) {
             dispatch(gifActions.clear());
             setSelected('');
@@ -37,7 +37,7 @@ export const HomeContainer = () => {
 
         setSelected(animal);
         dispatch(gifActions.get(new URLSearchParams({ q: animal, limit: getRandomInt(30, 60), offset: getRandomInt(10, 200), rating: 'g' })));
-    }
+    }, [selected]);
 
 
     return (
@@ -47,6 +47,7 @@ export const HomeContainer = () => {
                 handleGetGifs={handleGetGifs}
                 selected={selected}
                 gifs={gifs}
+                loading={loading}
             />
 
             { loading && <FullScreenSpinner /> }

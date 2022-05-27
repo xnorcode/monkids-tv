@@ -1,14 +1,14 @@
+ import { useLayoutEffect, useState } from 'react';
+
+
+ 
 /**
  * Method to detect screen size changes
  * 
  * Usage:
  * 1. import module useWindowSize
  * 2. get with: const [width, height] = useWindowSize();
- */
- import { useLayoutEffect, useState } from 'react';
-
-
- 
+ */ 
  export function useWindowSize() {
      const [size, setSize] = useState([0, 0]);
  
