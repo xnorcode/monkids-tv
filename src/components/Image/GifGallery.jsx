@@ -47,14 +47,14 @@ export const GifGallery = ({ data }) => {
 
 
     // reset timer and set next active gif for display
-    const nextGif = useCallback((timer) => {
+    const nextGif = useCallback(() => {
         // reset timer
         clearInterval(timer);
         setCounter(5);
         // set next gif active
         setActive(val => val < (data.length - 1) ? val + 1 : 0);
 
-    }, [data]);
+    }, [data, timer]);
 
 
     useEffect(() => {
