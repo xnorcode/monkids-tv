@@ -4,11 +4,10 @@ import { deviceConstants } from '../../constants';
 
 
 export const ScreenContainer = styled.div`
-    height: 100vh;
-    padding-top: 64px;
+    min-height: 100vh;
 
     @media ${deviceConstants.tablet} { 
-        padding-top: 88px;
+        
     }
 
     @media ${deviceConstants.laptop} { 

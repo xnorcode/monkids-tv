@@ -4,8 +4,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { gifActions } from '../../actions';
 import { ScreenContainer } from './HomeContainer.styles';
 import { HomePage } from './HomePage';
+import { Header } from '../../components/TopBar';
 import { FullScreenSpinner } from '../../components/Spinner';
-import { getRandomInt } from '../../utils';
+import { getRandomInt, history } from '../../utils';
+import { sitemap } from '../../constants';
 
 
 
@@ -37,14 +39,27 @@ export const HomeContainer = () => {
 
         setSelected(animal);
         dispatch(gifActions.get(new URLSearchParams({ q: animal, limit: getRandomInt(30, 60), offset: getRandomInt(10, 200), rating: 'g' })));
+    }, [selected, dispatch]);
+
+
+    const handleOpenGif = useCallback((data) => {
+        history.push(sitemap.animal + '/' + data.id,
+        {
+            data: {
+                type: selected
+            }
+        });
     }, [selected]);
 
 
     return (
         <ScreenContainer id='screen' >
 
+            <Header login={true} register={true} />
+
             <HomePage
                 handleGetGifs={handleGetGifs}
+                handleOpenGif={handleOpenGif}
                 selected={selected}
                 gifs={gifs}
                 loading={loading}
