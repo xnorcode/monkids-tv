@@ -16,6 +16,7 @@ import { contentHomepage } from '../../constants';
 
 export const HomePage = ({
     handleGetGifs,
+    handleOpenGif,
     selected,
     gifs,
     loading,
@@ -28,7 +29,7 @@ export const HomePage = ({
             <PageTitle>{contentHomepage.title}</PageTitle>
 
             <GifSection>
-                { hasGifs && <GifGallery data={gifs} /> }
+                { hasGifs && <GifGallery data={gifs} onClick={handleOpenGif} /> }
                 
                 { !hasGifs && !loading &&
                 <EmptyStateScreen

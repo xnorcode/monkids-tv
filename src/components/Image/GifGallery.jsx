@@ -8,6 +8,10 @@ import { deviceConstants } from '../../constants';
 const Container = styled.div`
     height: ${({ maxheight }) => maxheight || '100%'};
     width: ${({ maxwidth }) => maxwidth || '100%'};
+
+    :hover {
+        cursor: pointer;
+    }
 `;
 
 const StyledImage = styled.img`
@@ -19,7 +23,7 @@ const StyledImage = styled.img`
 
 
 
-export const GifGallery = ({ data }) => {
+export const GifGallery = ({ data, onClick }) => {
     const [active, setActive] = useState(0); // shows first gif by default
     const [counter, setCounter] = useState(5); // count 5 seconds
     const [timer, setTimer] = useState(null);
@@ -76,7 +80,7 @@ export const GifGallery = ({ data }) => {
     if(!data || data.length === 0) return null;
 
     return (
-        <Container maxwidth={`${galleryWidth}px`} maxheight={`${galleryHeight}px`}>
+        <Container maxwidth={`${galleryWidth}px`} maxheight={`${galleryHeight}px`} onClick={onClick ? () => onClick(data[active]) : null} >
             <StyledImage src={`https://media4.giphy.com/media/${data[active].id}/giphy.webp`} />
         </Container>
     );
