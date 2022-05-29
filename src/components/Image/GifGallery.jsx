@@ -80,7 +80,7 @@ export const GifGallery = ({ data, onClick }) => {
     if(!data || data.length === 0) return null;
 
     return (
-        <Container maxwidth={`${galleryWidth}px`} maxheight={`${galleryHeight}px`} onClick={() => onClick(data[active])} >
+        <Container maxwidth={`${galleryWidth}px`} maxheight={`${galleryHeight}px`} onClick={onClick ? () => onClick(data[active]) : null} >
             <StyledImage src={`https://media4.giphy.com/media/${data[active].id}/giphy.webp`} />
         </Container>
     );
